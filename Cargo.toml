@@ -2,6 +2,16 @@
 name = "hike"
 version = "0.1.0"
 authors = ["Stan Drozd <drozdziak1@gmail.com>"]
+description = "Go to a directory, run a command and come back"
+repository = "https://github.com/drozdziak1/hike"
+readme = "README.md"
+keywords = ["pushd", "binary", "simple", "tool"]
+categories = ["command-line-interface", "command-line-utilities", "filesystem"]
+license = "BSD-3-Clause"
+
+[badges]
+travis-ci = { repository = "drozdziak1/hike" }
+maintenance = { status = "actively-developed" }
 
 [dependencies]
 libc = "0.2"
