@@ -27,3 +27,6 @@ used `pushd`/`popd`. Using the `system()` libc function ensures that it'll
 always use its enclosing shell.
 
 Enjoy!
+
+## Planned features
+* Create the target directory (directories) if it/they don't exist
