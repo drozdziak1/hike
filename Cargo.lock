@@ -20,7 +20,7 @@ dependencies = [
 
 [[package]]
 name = "hike"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "docopt 0.8.3 (registry+https://github.com/rust-lang/crates.io-index)",
  "libc 0.2.40 (registry+https://github.com/rust-lang/crates.io-index)",

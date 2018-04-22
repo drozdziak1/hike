@@ -13,7 +13,7 @@ release process better. Running it with
 $ hike some_dir "some --command with --arguments=and | possibly --pipes"
 ```
 
-is equivalent to
+is equivalent to:
 
 ```shell
 $ pushd some_dir
