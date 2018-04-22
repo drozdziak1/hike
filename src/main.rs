@@ -2,10 +2,9 @@ extern crate docopt;
 extern crate libc;
 
 use std::env;
-use std::io;
 
 use std::ffi::CString;
-use std::io::Write;
+use std::fs::create_dir_all;
 use std::path::Path;
 use std::process;
 
@@ -16,7 +15,7 @@ const USAGE: &'static str = "
 Hike - do stuff in another directory.
 
 Usage:
-  hike <dir> <command>
+  hike [-p] <dir> <command>
   hike (-h | --help)
   hike --version
 
@@ -24,6 +23,7 @@ Options:
   <dir>         The directory to hike into.
   <command>     The command to execute in <dir>.
   -h --help     Shows this screen.
+  -p            Creates the directory (like mkdir -p)
   --version     Prints the version of your Hike.
 ";
 
@@ -35,20 +35,25 @@ fn main() {
         .unwrap_or_else(|e| e.exit());
 
     if args.get_bool("--version") {
-        writeln!(io::stderr(), "{}", VERSION.unwrap_or("unknown")).expect("Could not write to stderr");
+        eprintln!("{}", VERSION.unwrap_or("unknown"));
         process::exit(libc::EXIT_SUCCESS);
     }
 
-    let dir = Path::new(args.get_str("<dir>"));
-    if !dir.exists() {
-        writeln!(io::stderr(), "hike: {}: No such file or directory", dir.to_str().unwrap())
-            .expect("Could not write to stderr");
-        process::exit(libc::ENOENT);
-    }
+    let dir = if args.get_bool("-p") {
+        let new_dir = Path::new(args.get_str("<dir>"));
+        create_dir_all(new_dir).expect("Could not create directory");
+        new_dir
+    } else {
+        let existing_dir = Path::new(args.get_str("<dir>"));
+        if !existing_dir.exists() {
+            eprintln!("hike: {}: No such file or directory", existing_dir.to_str().unwrap());
+            process::exit(libc::ENOENT);
+        }
+        existing_dir
+    };
 
     if !dir.is_dir() {
-        writeln!(io::stderr(), "hike: {}: Not a directory", dir.to_str().unwrap())
-            .expect("Could not write to stderr");
+        eprintln!("hike: {}: Not a directory", dir.to_str().unwrap());
         process::exit(libc::EXIT_FAILURE);
     }
 
@@ -57,8 +62,7 @@ fn main() {
     let old_cwd = env::current_dir().unwrap();
 
     env::set_current_dir(dir).unwrap_or_else(|_| {
-        writeln!(io::stderr(), "Could not change to path \"{}\"", dir.to_str().unwrap())
-            .expect("Could not write to stderr");
+        eprintln!("Could not change to path \"{}\"", dir.to_str().unwrap());
         process::exit(libc::EXIT_SUCCESS);
     });
 

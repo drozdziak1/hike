@@ -1,6 +1,6 @@
 [package]
 name = "hike"
-version = "0.1.0"
+version = "0.1.2"
 authors = ["Stan Drozd <drozdziak1@gmail.com>"]
 description = "Go to a directory, run a command and come back"
 repository = "https://github.com/drozdziak1/hike"
