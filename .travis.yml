@@ -4,3 +4,4 @@ rust:
   - nightly
 script:
   - cargo build --verbose --all
+cache: cargo
