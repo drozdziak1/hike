@@ -14,7 +14,7 @@ let
   };
 
   rustPkgs = pkgs.rustBuilder.makePackageSet' {
-    rustChannel = "1.49.0";
+    rustChannel = "1.50.0";
     packageFun = import ./Cargo.nix;
   };
 in
