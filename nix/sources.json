@@ -5,10 +5,10 @@
         "homepage": "",
         "owner": "cargo2nix",
         "repo": "cargo2nix",
-        "rev": "0dec2a8d6313347dfd183f3cd52aa9d3b43e7ed2",
-        "sha256": "045cfvvwirlyp0h36ppbpp8ygqj3nzwzxgmsijh5cm9ilslxm3ym",
+        "rev": "ebef37673009af79814528b1bc42ec30d7a25012",
+        "sha256": "04ip32dp5rwyrw4wri7blh3dnchvxwlrdgmq7pc2xhpr50v65q0m",
         "type": "tarball",
-        "url": "https://github.com/cargo2nix/cargo2nix/archive/0dec2a8d6313347dfd183f3cd52aa9d3b43e7ed2.tar.gz",
+        "url": "https://github.com/cargo2nix/cargo2nix/archive/ebef37673009af79814528b1bc42ec30d7a25012.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {

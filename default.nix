@@ -8,7 +8,7 @@ let
   rustOverlay = import "${nixpkgsMozilla}/rust-overlay.nix";
   cargo2nixOverlay = import "${cargo2nix}/overlay";
 
-  pkgs = import <nixpkgs> {
+  pkgs = import nixpkgs {
     inherit system;
     overlays = [ cargo2nixOverlay rustOverlay ];
   };
